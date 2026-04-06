@@ -6,6 +6,7 @@ from torchvision import transforms
 from torchvision.models import vgg16, VGG16_Weights
 import torch.nn as nn
 from PIL import Image
+import os
 
 class CheckTrashModel(nn.Module):
   def __init__(self):
@@ -42,7 +43,9 @@ trash = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
 trash_predicted = APIRouter(prefix='/trash_predict', tags=['Trash Project'])
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 trash_model = CheckTrashModel()
-trash_model.load_state_dict(torch.load('torch_ml_models/trash_model.pth', map_location=device, weights_only=True))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'torch_ml_models', 'trash_model.pth')
+trash_model.load_state_dict(torch.load(MODEL_PATH, map_location=device, weights_only=True))
 trash_model.to(device)
 trash_model.eval()
 

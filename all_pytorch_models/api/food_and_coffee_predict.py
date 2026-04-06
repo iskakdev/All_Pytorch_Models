@@ -5,6 +5,7 @@ import torch
 from torchvision import transforms
 import torch.nn as nn
 from PIL import Image
+import os
 
 class CheckFood(nn.Module):
   def __init__(self):
@@ -82,7 +83,9 @@ foods = ['burger', 'coffee', 'dessert', 'fruit', 'pasta', 'pizza', 'salad', 'sou
 food_and_coffee_predicted = APIRouter(prefix='/food_and_coffee_predict', tags=['Food and Coffee Project'])
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 food_and_coffee_model = CheckFood()
-food_and_coffee_model.load_state_dict(torch.load('torch_ml_models/foods_model.pth', map_location=device, weights_only=True))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'torch_ml_models', 'foods_model.pth')
+food_and_coffee_model.load_state_dict(torch.load(MODEL_PATH, map_location=device, weights_only=True))
 food_and_coffee_model.to(device)
 food_and_coffee_model.eval()
 

@@ -6,6 +6,7 @@ from torchvision import transforms
 from torchvision.models import vgg16, VGG16_Weights
 import torch.nn as nn
 from PIL import Image
+import os
 
 class CIFAR100(nn.Module):
   def __init__(self):
@@ -53,7 +54,9 @@ classes = ['apple','aquarium_fish','baby','bear','beaver','bed','bee','beetle','
 cifar_100_predicted = APIRouter(prefix='/cifar_100_predict', tags=['CIFAR100 Project'])
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 cifar_100_model = CIFAR100()
-cifar_100_model.load_state_dict(torch.load('torch_ml_models/cifar_100_model.pth', map_location=device, weights_only=True))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'torch_ml_models', 'cifar_100_model.pth')
+cifar_100_model.load_state_dict(torch.load(MODEL_PATH, map_location=device, weights_only=True))
 cifar_100_model.to(device)
 cifar_100_model.eval()
 

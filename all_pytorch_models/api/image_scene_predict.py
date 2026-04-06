@@ -6,6 +6,7 @@ from torchvision import transforms
 from torchvision.models import vgg16, VGG16_Weights
 import torch.nn as nn
 from PIL import Image
+import os
 
 class ImageScenceVgg(nn.Module):
   def __init__(self):
@@ -63,7 +64,9 @@ classes = ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']
 image_scene_predicted = APIRouter(prefix='/image_scene_predict', tags=['ImageScene Project'])
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 image_scene_model = ImageScenceVgg()
-image_scene_model.load_state_dict(torch.load('torch_ml_models/image_scence_model.pth', map_location=device, weights_only=True))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'torch_ml_models', 'image_scence_model.pth')
+image_scene_model.load_state_dict(torch.load(MODEL_PATH, map_location=device, weights_only=True))
 image_scene_model.eval()
 
 @image_scene_predicted.post('/predict/')

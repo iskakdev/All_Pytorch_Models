@@ -5,6 +5,7 @@ import torch
 from torchvision import transforms
 import torch.nn as nn
 from PIL import Image
+import os
 
 class CheckImage(nn.Module):
     def __init__(self):
@@ -36,7 +37,9 @@ transform = transforms.Compose([
 mnist_predicted = APIRouter(prefix='/mnist_predict', tags=['MNIST Project'])
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = CheckImage()
-model.load_state_dict(torch.load('torch_ml_models/model.pth', map_location=device))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'torch_ml_models', 'model.pth')
+model.load_state_dict(torch.load(MODEL_PATH, map_location=device, weights_only=True))
 model.to(device)
 model.eval()
 

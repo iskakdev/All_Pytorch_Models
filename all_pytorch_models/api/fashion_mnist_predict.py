@@ -5,6 +5,7 @@ import torch
 from torchvision import transforms
 import torch.nn as nn
 from PIL import Image
+import os
 
 fashion_mnist_predicted = APIRouter(prefix='/fashion_mnist_predict', tags=['Fashion MNIST Project'])
 
@@ -37,7 +38,9 @@ transform = transforms.Compose([
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 fashion_model = CheckImage()
-fashion_model.load_state_dict(torch.load('torch_ml_models/fashion_model.pth', map_location=device))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'torch_ml_models', 'fashion_model.pth')
+fashion_model.load_state_dict(torch.load(MODEL_PATH, map_location=device, weights_only=True))
 fashion_model.to(device)
 fashion_model.eval()
 

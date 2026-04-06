@@ -5,6 +5,7 @@ import torch
 from torchvision import transforms
 import torch.nn as nn
 from PIL import Image
+import os
 
 class FlowersVGG16(nn.Module):
   def __init__(self):
@@ -81,7 +82,9 @@ flowers = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip']
 flower_predicted = APIRouter(prefix='/flower_predict', tags=['Flowers Project'])
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 flower_model = FlowersVGG16()
-flower_model.load_state_dict(torch.load('torch_ml_models/flower_model.pth', map_location=device, weights_only=True))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'torch_ml_models', 'flower_model.pth')
+flower_model.load_state_dict(torch.load(MODEL_PATH, map_location=device, weights_only=True))
 flower_model.to(device)
 flower_model.eval()
 
