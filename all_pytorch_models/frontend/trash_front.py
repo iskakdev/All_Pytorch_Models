@@ -2,9 +2,11 @@ import streamlit as st
 import requests
 from PIL import Image
 import io
+import os
 
 def check_trash_image():
-    api_url = 'http://127.0.0.1:8001/trash_predict/predict/'
+    API_BASE = os.getenv('API_BASE_URL', 'http://127.0.0.1:8001')
+    api_url = f'{API_BASE}/trash_predict/predict/'
 
     st.title('Trash Project')
     st.write('Загрузите изображение')

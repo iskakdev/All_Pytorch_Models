@@ -2,9 +2,11 @@ import streamlit as st
 import requests
 from PIL import Image
 import io
+import os
 
 def check_flowers():
-    api_url = 'http://127.0.0.1:8001/flower_predict/flowers_predicted/'
+    API_BASE = os.getenv('API_BASE_URL', 'http://127.0.0.1:8001')
+    f'{API_BASE}/flowers_predict/predict/'
 
     st.title('Flowers Project')
     st.write('Загрузите изображение')

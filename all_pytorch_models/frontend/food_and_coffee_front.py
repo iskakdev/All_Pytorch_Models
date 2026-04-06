@@ -2,10 +2,11 @@ import streamlit as st
 import requests
 from PIL import Image
 import io
+import os
 
 def check_food_and_coffee():
-    api_url = 'http://127.0.0.1:8001/food_and_coffee_predict/predicted/'
-
+    API_BASE = os.getenv('API_BASE_URL', 'http://127.0.0.1:8001')
+    api_url = f'{API_BASE}/food_and_coffee_predict/predict/'
     st.title('Food and Coffee Project')
     st.write('Для того, чтобы модель определила загрузите изображение')
 

@@ -2,9 +2,11 @@ import streamlit as st
 import requests
 from PIL import Image
 import io
+import os
 
 def check_number():
-    api_url = 'http://127.0.0.1:8000/mnist_predict/predict/'
+    API_BASE = os.getenv('API_BASE_URL', 'http://127.0.0.1:8001')
+    api_url = f'{API_BASE}/mnist_predict/predict/'
 
     st.title('MNIST Project')
     st.write('Загрузите изображение с цифрой')
