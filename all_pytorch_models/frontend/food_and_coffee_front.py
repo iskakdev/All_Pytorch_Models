@@ -4,7 +4,7 @@ from PIL import Image
 import io
 
 def check_food_and_coffee():
-    api_url = 'http://127.0.0.1:8000/food_and_coffee_predict/predicted/'
+    api_url = 'http://127.0.0.1:8001/food_and_coffee_predict/predicted/'
 
     st.title('Food and Coffee Project')
     st.write('Для того, чтобы модель определила загрузите изображение')

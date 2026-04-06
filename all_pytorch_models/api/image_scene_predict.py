@@ -66,7 +66,7 @@ image_scene_model = ImageScenceVgg()
 image_scene_model.load_state_dict(torch.load('torch_ml_models/image_scence_model.pth', map_location=device, weights_only=True))
 image_scene_model.eval()
 
-image_scene_predicted.post('/predict/')
+@image_scene_predicted.post('/predict/')
 async def check_image_scene(file: UploadFile = File(...)):
     try:
         image_data = await file.read()

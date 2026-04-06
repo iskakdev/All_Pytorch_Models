@@ -3,14 +3,14 @@ import requests
 from PIL import Image
 import io
 
-def check_image_scene():
-    api_url = 'http://127.0.0.1:8001/image_scene_predict/predict/'
+def check_trash_image():
+    api_url = 'http://127.0.0.1:8001/trash_predict/predict/'
 
-    st.title('ImageScene Project')
+    st.title('Trash Project')
     st.write('Загрузите изображение')
 
     uploaded_file = st.file_uploader('Загрузите изображение: ', type=['png', 'jpg', 'jpeg', 'jpd', 'webp'])
-    classes = ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']
+    trash = ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
 
     if uploaded_file is not None:
          image = Image.open(uploaded_file)

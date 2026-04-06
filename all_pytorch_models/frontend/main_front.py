@@ -13,12 +13,13 @@ from all_pytorch_models.frontend.flowers_front import check_flowers
 from all_pytorch_models.frontend.food_and_coffee_front import check_food_and_coffee
 from all_pytorch_models.frontend.cifar_100_front import check_cifar_100
 from all_pytorch_models.frontend.image_scene_front import check_image_scene
+from all_pytorch_models.frontend.trash_front import check_trash_image
 
 
 with st.sidebar:
     name = st.radio(label='All Models', options=['MNIST Project', 'Fashion MNIST Project', 'CIFAR10 Project',
                                                  'Flowers Project', 'Food and Coffee Project', 'CIFAR100 Project',
-                                                 'ImageScene Project'])
+                                                 'ImageScene Project', 'Trash Project'])
 
 if name == 'MNIST Project':
     check_number()
@@ -34,3 +35,5 @@ elif name == 'CIFAR100 Project':
     check_cifar_100()
 elif name == 'ImageScene Project':
     check_image_scene()
+elif name == 'Trash Project':
+    check_trash_image()

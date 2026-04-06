@@ -4,7 +4,7 @@ from PIL import Image
 import io
 
 def check_fashion():
-    api_url = 'http://127.0.0.1:8000/fashion_mnist_predict/fashion_predicted/'
+    api_url = 'http://127.0.0.1:8001/fashion_mnist_predict/fashion_predicted/'
 
     st.title('Fashion MNIST Project')
     st.write('Загрузите изображение')

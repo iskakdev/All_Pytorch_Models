@@ -4,7 +4,7 @@ from PIL import Image
 import io
 
 def check_cifar_100():
-    api_url = 'http://127.0.0.1:8000/cifar_100_predict/predict/'
+    api_url = 'http://127.0.0.1:8001/cifar_100_predict/predict/'
 
     st.title('CIFAR100 Project')
     st.write('Загрузите изображение')

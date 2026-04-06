@@ -4,7 +4,7 @@ from PIL import Image
 import io
 
 def check_flowers():
-    api_url = 'http://127.0.0.1:8000/flower_predict/flowers_predicted/'
+    api_url = 'http://127.0.0.1:8001/flower_predict/flowers_predicted/'
 
     st.title('Flowers Project')
     st.write('Загрузите изображение')
